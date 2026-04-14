@@ -37,7 +37,7 @@ jobs:
                   if [ -d "my-web-app" ]; then
                     cd my-web-app && git pull
                   else
-                    git clone https://github.com/YourUsername/your-repo-name.git my-web-app 
+                    git clone https://github.com/RRavi20/automated-deployment-pipeline.git my-web-app 
                     cd my-web-app
                   fi
                   
