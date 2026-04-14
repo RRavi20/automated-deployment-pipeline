@@ -37,7 +37,7 @@ jobs:
                   if [ -d "my-web-app" ]; then
                     cd my-web-app && git pull
                   else
-                    git clone https://github.com/YourUsername/your-repo-name.git my-web-app
+                    git clone https://github.com/YourUsername/your-repo-name.git my-web-app 
                     cd my-web-app
                   fi
                   
@@ -47,5 +47,5 @@ jobs:
                   
                   # 4. Build and Run the new version
                   docker build -t my-web-app .
-                  docker run -d -p 80:3000 --name my-web-app my-web-app
+                  docker run -d -p 80:3000 --name my-web-app my-web-app .
 
