@@ -1,0 +1,12 @@
+{
+  "name": "my-web-app",
+  "version": "1.0.0",
+  "description": "Pipeline Test Site",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
