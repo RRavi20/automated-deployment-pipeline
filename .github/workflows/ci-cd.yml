@@ -1,0 +1,25 @@
+name: Docker Build and Test
+
+# 1. When should this run?
+on:
+    workflow_dispatch:
+    push:
+        branches: [ "main" ] # Runs Whenever you push to the main branch
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest # This starts a fresh Linux machine in the cloud
+
+        steps:
+            - name: Checkout code
+              uses: action/checkout@v4 # This copies your code to the cloud machine
+
+            - name: Build the Docker image
+              run: docker build -t my-web-app . 
+
+            - name: Verify Container Starts
+              run: |
+                docker run -d -p 8080:3000 --name test-container my-web-app
+                sleep 5
+                docker ps | grep test-container
+
