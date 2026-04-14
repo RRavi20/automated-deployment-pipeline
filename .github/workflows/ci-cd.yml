@@ -30,10 +30,22 @@ jobs:
                 username: ${{ secrets.USERNAME }}
                 key: ${{ secrets.SSH_KEY }}
                 script: | 
-                  # Stop any old version of the app
+                  # 1. Update and install Git if needed
+                  sudo apt-get update -y && sudo apt-get install git -y
+                  
+                  # 2. Get the latest code from GitHub
+                  if [ -d "my-web-app" ]; then
+                    cd my-web-app && git pull
+                  else
+                    git clone https://github.com/YourUsername/your-repo-name.git my-web-app
+                    cd my-web-app
+                  fi
+                  
+                  # 3. Clean up old containers
                   docker stop my-web-app || true
                   docker rm my-web-app || true
-                  #Pull the new code and run it
+                  
+                  # 4. Build and Run the new version
                   docker build -t my-web-app .
-                  docker run -d -p 80:3000 --name my-web-app my-wep-app 
+                  docker run -d -p 80:3000 --name my-web-app my-web-app
 
