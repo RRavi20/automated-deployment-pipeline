@@ -12,7 +12,7 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: action/checkout@v4 # This copies your code to the cloud machine
+              uses: actions/checkout@v4 # This copies your code to the cloud machine
 
             - name: Build the Docker image
               run: docker build -t my-web-app . 
