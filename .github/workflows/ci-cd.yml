@@ -23,3 +23,17 @@ jobs:
                 sleep 5
                 docker ps | grep test-container
 
+            - name: Deploy to AWS
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.HOST }}
+                username: ${{ secrets.USERNAME }}
+                key: ${{ secrets.SSH_KEY }}
+                script: | 
+                  # Stop any old version of the app
+                  docker stop my-web-app || true
+                  docker rm my-web-app || true
+                  #Pull the new code and run it
+                  docker build -t my-web-app .
+                  docker run -d -p 80:3000 --name my-web-app my-wep-app 
+
